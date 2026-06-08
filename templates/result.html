@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado da Análise</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0eafc, #cfdef3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.15);
+            text-align: center;
+            width: 360px;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .resultado {
+            font-size: 22px;
+            font-weight: bold;
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .normal {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #2e7d32;
+        }
+
+        .fraude {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #c62828;
+        }
+
+        a {
+            display: inline-block;
+            text-decoration: none;
+            background: #007bff;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>Resultado da Análise</h2>
+    <div class="subtitle">Sistema de detecção de fraude em tempo real</div>
+
+    {% if "FRAUDE" in resultado %}
+        <div class="resultado fraude">
+            🚨 {{ resultado }}
+        </div>
+    {% else %}
+        <div class="resultado normal">
+            ✔ {{ resultado }}
+        </div>
+    {% endif %}
+
+    <a href="/">Nova análise</a>
+
+</div>
+
+</body>
+</html>
