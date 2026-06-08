@@ -26,7 +26,6 @@ def predict():
         v3 = float(request.form.get("v3") or 0)
         amount = float(request.form.get("amount") or 0)
 
-        # ⚠️ IMPORTANTE: reshape correto para ML
         data = [v1, v2, v3, amount]
 
         result, risk, level = predict_fraud(model, data)

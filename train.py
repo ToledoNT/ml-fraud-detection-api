@@ -8,10 +8,8 @@ import joblib
 df = pd.read_csv("data/creditcard.csv")
 df.columns = df.columns.str.strip()
 
-# detectar target
 target = "Class" if "Class" in df.columns else "class"
 
-# 🔥 garantir balanceamento básico (MUITO IMPORTANTE)
 fraude = df[df[target] == 1]
 normal = df[df[target] == 0]
 
@@ -20,14 +18,11 @@ normal_sample = normal.sample(len(fraude) * 3, random_state=42)
 
 df_balanced = pd.concat([fraude, normal_sample])
 
-# embaralhar
 df_balanced = df_balanced.sample(frac=1, random_state=42)
 
-# features alinhadas com Flask
 X = df_balanced[["V1", "V2", "V3", "Amount"]]
 y = df_balanced[target]
 
-# split
 X_train, X_test, y_train, y_test = train_test_split(
     X,
     y,
@@ -46,17 +41,13 @@ model = RandomForestClassifier(
     n_jobs=-1
 )
 
-# treino
 model.fit(X_train, y_train)
 
-# previsão
 y_pred = model.predict(X_test)
 
-# avaliação
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print(classification_report(y_test, y_pred))
 
-# salvar modelo
-joblib.dump(model, "model/fraude.pkl")
+=joblib.dump(model, "model/fraude.pkl")
 
 print("Modelo treinado com sucesso!")
